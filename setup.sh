@@ -31,6 +31,33 @@ sudo apt-get install -y emacs24-nox emacs24-el emacs24-common-non-dfsg
 # https://toolbelt.heroku.com/debian
 wget -qO- https://toolbelt.heroku.com/install-ubuntu.sh | sh
 
+# Install PHP and FPM
+sudo apt-get install -y php5-common php5-cgi nginx
+sudo apt-get install -y php-pear
+
+# Install Drush 
+# https://drupal.org/node/1248790
+pear channel-discover pear.drush.org
+pear install drush/drush
+drush version
+
+# Install NGINX
+sudo apt-get install -y nginx
+
+# NGINX Drupal config 
+# https://github.com/perusio/drupal-with-nginx
+git clone https://github.com/Swifto/drupal-with-nginx.git
+cd drupal-with-nginx
+git checkout D7
+cd $HOME
+
+# Do we need this for dompdf ???
+#https://github.com/PhenX/php-font-lib
+#unzip
+#mv to lib/php-font-lib
+# apc?
+
+
 # git pull and install dotfiles as well
 cd $HOME
 if [ -d ./dotfiles/ ]; then
