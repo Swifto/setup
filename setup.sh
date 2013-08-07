@@ -32,17 +32,23 @@ sudo apt-get install -y emacs24-nox emacs24-el emacs24-common-non-dfsg
 wget -qO- https://toolbelt.heroku.com/install-ubuntu.sh | sh
 
 # Install PHP and FPM
-sudo apt-get install -y php5-common php5-cgi nginx
+sudo apt-get install -y php5-common php5-cgi php5-fpm nginx
 sudo apt-get install -y php-pear
+sudo apt-get update
+
+# Pear installations
+sudo pear install -a Mail_Mime
+sudo pear install Mail_mimeDecode
 
 # Install Drush 
 # https://drupal.org/node/1248790
-pear channel-discover pear.drush.org
-pear install drush/drush
-drush version
+sudo apt-get install -y drush
+echo -e "2\ny\n" | sudo drush dl drush --destination='usr/share'
+drush --version
 
 # Install NGINX
 sudo apt-get install -y nginx
+sudo apt-get update
 
 # NGINX Drupal config 
 # https://github.com/perusio/drupal-with-nginx
@@ -56,7 +62,6 @@ cd $HOME
 #unzip
 #mv to lib/php-font-lib
 # apc?
-
 
 # git pull and install dotfiles as well
 cd $HOME
