@@ -31,9 +31,16 @@ sudo apt-get install -y emacs24-nox emacs24-el emacs24-common-non-dfsg
 # https://toolbelt.heroku.com/debian
 wget -qO- https://toolbelt.heroku.com/install-ubuntu.sh | sh
 
-# Install PHP and FPM
+# Install PHP, FPM, NGINX
 sudo apt-get install -y php5-common php5-cgi php5-fpm nginx
-sudo apt-get install -y php-pear
+# curel  - curl
+# pspell - spelling
+sudo apt-get install -y php-pear php5-curl php5-pspell
+# Install xcache (instead of apc)
+# http://www.imadalin.ro/weblog/2013/06/apc-vs-xcache/
+sudo apt-get install -y php5-xcache 
+# TODO: Install xcache admin
+# http://www.tecmint.com/install-xcache-to-accelerate-and-optimize-php-performance/
 sudo apt-get update
 
 # Pear installations
@@ -45,10 +52,6 @@ sudo pear install Mail_mimeDecode
 sudo apt-get install -y drush
 echo -e "2\ny\n" | sudo drush dl drush --destination='usr/share'
 drush --version
-
-# Install NGINX
-sudo apt-get install -y nginx
-sudo apt-get update
 
 # NGINX Drupal config 
 # https://github.com/perusio/drupal-with-nginx
